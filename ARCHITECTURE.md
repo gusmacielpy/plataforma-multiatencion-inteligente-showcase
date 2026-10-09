@@ -327,6 +327,6 @@ If you are evaluating the project as a hiring signal:
 
 ## Credits and Access
 
-Design, implementation and tenant onboarding by *[your name]*. Testing by the tenant's operational team in Paraguay.
+Design, implementation and tenant onboarding by [Gus Maciel](https://gusmaciel.com). Testing by the tenant's operational team in Paraguay.
 
 For technical interviews or deeper discussion, happy to share the private repository and walk through the pieces that are not public. Contact details are in the [README](./README.md).

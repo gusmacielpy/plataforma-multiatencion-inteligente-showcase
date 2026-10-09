@@ -1,5 +1,7 @@
 # PMI — Multi-channel Conversational AI Platform
 
+**PMI** stands for *Plataforma de Multi-atención Inteligente* (Intelligent Multi-channel Support Platform).
+
 > A multi-tenant SaaS platform that gives small and mid-size businesses a conversational AI assistant across messaging channels (WhatsApp first), with tenant-level governance, auditability and human handoff.
 
 **Status:** In production. One live pilot tenant in Paraguay (retail, vision care) handling real customer traffic since mid-2026.
@@ -17,7 +19,17 @@
 - Structured outputs end-to-end: every LLM call returns a schema-validated payload, never free-form text that the runtime has to parse.
 - Deterministic guardrails on top of LLMs: immutable regions enforced character-by-character, closed action sets for the governor, template fallbacks on every LLM failure path.
 - Full observability: every turn persists a trace path, understanding snapshot, governor decision and renderer output for post-mortem.
-- Operates on top of LangGraph, Supabase, Nuxt 3 and a mix of OpenAI structured outputs and DeepSeek as fallback.
+- Operates on top of LangGraph, Supabase, Nuxt 4 and a mix of OpenAI structured outputs and DeepSeek as fallback.
+
+---
+
+## Key Features
+
+- **WhatsApp AI assistant.** Answers customer inquiries 24/7 using each tenant's own information and business rules, and hands off to a human when needed.
+- **Bot Lab.** The assistant is trained and tuned per tenant here: simulate conversations, review the trace of every turn and audit each answer before it reaches customers.
+- **Kanban board.** Customer cases are tracked on a board so the team can follow each one from first contact to resolution.
+- **Analytics.** Statistics on conversations and support performance, so tenants can see how their customer service is going.
+- **Multi-tenant admin.** Each business configures its knowledge, business rules and handoff policies from the admin UI, without touching code.
 
 ---
 
@@ -33,7 +45,7 @@ PMI targets a specific niche: a platform where a non-technical tenant can config
 
 ```mermaid
 flowchart LR
-  C[End customer<br/>WhatsApp] -->|inbound| W[Webhook<br/>Nuxt 3 API routes]
+  C[End customer<br/>WhatsApp] -->|inbound| W[Webhook<br/>Nuxt 4 API routes]
   W --> P[Turn package<br/>builder]
   P --> L[LangGraph<br/>conversation graph]
   L -->|outbound text| C
@@ -47,7 +59,7 @@ flowchart LR
 Three independent surfaces:
 
 1. **Runtime** (LangGraph service) consumes a *turn package* and emits a *response plan*. Entirely stateless; state lives in Supabase.
-2. **Nuxt 3 app** handles the WhatsApp webhook, exposes the Bot Lab admin UI, and renders the tenant-facing dashboard.
+2. **Nuxt 4 app** handles the WhatsApp webhook, exposes the Bot Lab admin UI, and renders the tenant-facing dashboard.
 3. **Supabase** persists tenant contracts, business rules, conversations, messages, decision packets and per-turn diagnostics.
 
 ---
@@ -73,8 +85,8 @@ Topics covered there:
 
 | Layer | Choice | Notes |
 |---|---|---|
-| Admin UI | Nuxt 3 + Vue 3 | SSR, Tailwind, Pinia-less composables. |
-| API | Nuxt 3 server routes | TypeScript end-to-end. |
+| Admin UI | Nuxt 4 + Vue 3 | SSR, Tailwind, Pinia-less composables. |
+| API | Nuxt 4 server routes | TypeScript end-to-end. |
 | Conversational runtime | LangGraph (JS) | Custom graph nodes, not pre-built agents. |
 | Primary LLM | OpenAI structured outputs | GPT-6 family (Luna / Sol / Astra depending on role). |
 | Fallback LLM | DeepSeek structured | For resilience and cost benchmarking. |
@@ -96,6 +108,7 @@ Topics covered there:
 - Human handoff with CRM lead upsert.
 - Vision for inbound images (prescription vs. receipt vs. password-slip vs. other).
 - Per-tenant observability dashboard with feedback markers.
+- Kanban board for case follow-up and conversation analytics.
 
 **Shipped recently:**
 
@@ -120,3 +133,5 @@ Source code is private due to real tenant data in production migrations and git 
 - Collaborators considering joining the project.
 
 Contact: *contacto@gusmaciel.com / https://www.linkedin.com/in/gusmacielpy*
+
+Portfolio: https://gusmaciel.com
