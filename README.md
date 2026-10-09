@@ -119,4 +119,4 @@ Source code is private due to real tenant data in production migrations and git 
 - Engineering managers interested in the design patterns.
 - Collaborators considering joining the project.
 
-Contact: *[your email / LinkedIn here]*
+Contact: *contacto@gusmaciel.com / https://www.linkedin.com/in/gusmacielpy*
